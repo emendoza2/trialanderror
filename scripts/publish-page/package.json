@@ -1,0 +1,11 @@
+{
+  "author": "Ryan Boone",
+  "license": "ISC",
+  "main": "main.mjs",
+  "dependencies": {
+    "@11ty/eleventy-fetch": "^3.0.0",
+    "@notionhq/client": "^1.0.4",
+    "node-fetch": "^3.2.6",
+    "slugify": "^1.6.5"
+  }
+}

@@ -1,0 +1,38 @@
+---
+title: Trial & Error
+description: Yet Another Tailwind Alpine Starter Project for 11ty!
+layout: page
+pagination:
+  data: collections.post
+  alias: posts
+  size: 2
+---
+
+<header class="mb-8">
+  <h1 class="text-5xl font-black font-switzer">Trial & Error</h1>
+  <p>Ruminations of a cybersecurity student</p>
+</header>
+
+
+<section class="mb-6">
+  <h2 class="text-3xl font-switzer uppercase tracking-wide font-black mb-2">Posts</h2>
+  <ul>
+    {% for post in posts %}
+      <li class="py-2">
+        <article class="font-redaction">
+          <h3 class="text-2xl font-bold">{{ post.data.title }}</h3>
+          <time datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+          {%- if post.data.page.excerpt -%}
+              <p>{{ post.data.page.excerpt | toHTML | safe }}</p>
+          {%- endif -%}
+          <div class="font-tte"><a href="{{ post.url | url}}">Read &rarr;</a></div>
+        </article>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<aside class="md:float-right border-l-2 border-current pl-4 ">
+  <h2 class="text-3xl font-switzer uppercase tracking-wide font-black mb-2">Hello</h2>
+  <p>I&rsquo;m Elijah Mendoza, a freshman learning cybersecurity.</p>
+</aside>

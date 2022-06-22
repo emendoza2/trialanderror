@@ -1,0 +1,9 @@
+---
+layout: base
+---
+<div class="container p-8 mx-auto">
+    {% block content %}
+      {{ content | safe }}
+    {% endblock %}
+    {% include "c-footer.njk" %}
+</div>

@@ -1,0 +1,32 @@
+@import "./fonts.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    a:not(.unstyled) {
+        @apply underline decoration-wavy decoration-1;
+        background-image: linear-gradient(black, black);
+        background-position: 0% 100%;
+        background-repeat: no-repeat;
+        background-size: 0% 100%;
+        transition: all 0.3s ease;
+    }
+    a:not(.unstyled):hover, a.group.unstyled:hover a:not(.unstyled) {
+        @apply text-white;
+        background-size: 100% 100%;
+        text-decoration-color: rgba(0,0,0,0);
+    }
+    pre, code, article code[class*="language-"], pre[class*="language-"] {
+        @apply font-computermoderntypewriter;
+    }
+    article pre[class*="language-"] {
+        @apply p-4 rounded-md -mx-4;
+    }
+    b {}
+}
+
+.post > * + * {
+    @apply mt-4;
+}

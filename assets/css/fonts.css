@@ -1,0 +1,105 @@
+@font-face {
+  font-family: "Redaction";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/Redaction-Italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Redaction";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/Redaction-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Redaction";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/assets/fonts/Redaction-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Redaction70";
+  font-style: italic;
+  font-display: swap;
+  src: url("/assets/fonts/Redaction_70-Italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Redaction70";
+  font-style: normal;
+  font-display: swap;
+  src: url("/assets/fonts/Redaction_70-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Redaction70";
+  font-style: normal;
+  font-weight: bold;
+  font-display: swap;
+  src: url("/assets/fonts/Redaction_70-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Switzer";
+  src: url("/assets/fonts/Switzer-Regular.woff2") format("woff2"),
+    url("/assets/fonts/Switzer-Regular.woff") format("woff");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Switzer";
+  src: url("/assets/fonts/Switzer-Black.woff2") format("woff2"),
+    url("/assets/fonts/Switzer-Black.woff") format("woff");
+  font-weight: 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "TTE";
+  src: url("/assets/fonts/TT2020StyleE-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "TTE";
+  src: url("/assets/fonts/TT2020StyleE-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "TTB";
+  src: url("/assets/fonts/TT2020Base-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "TTB";
+  src: url("/assets/fonts/TT2020Base-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+} 
+
+
+@font-face {
+  font-family: "Computer Modern Typewriter";
+  src: url("/assets/fonts/cmunit.woff") format("woff");
+  font-weight: 400;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Computer Modern Typewriter";
+  src: url("/assets/fonts/cmuntt.woff") format("woff");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+} 
