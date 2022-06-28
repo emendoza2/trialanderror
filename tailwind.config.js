@@ -6,9 +6,9 @@ module.exports = {
         switzer: ["Switzer", "sans-serif"],
         redaction: ["Redaction", "serif"],
         redaction70: ["Redaction70", "Redaction", "serif"],
-        tte: ["TTB", "monospace"],
-        tte: ["TTE", "monospace"],
-        computermoderntypewriter: ['"Computer Modern Typewriter"', "monospace"]
+        tte: ["TTB", "Courier New", "Courier", "monospace"],
+        tte: ["TTE", "Courier New", "Courier", "monospace"],
+        computermoderntypewriter: ['"Computer Modern Typewriter"', "Courier New", "Courier", "monospace"]
       }
     },
   },

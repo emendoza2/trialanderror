@@ -1,14 +1,14 @@
 ---
 title: "Basic Reconnaissance on TryHackMe: Part 1"
 date: 2022-06-22
-excerpt: 
 tags:
   - TryHackMe
   - Networking
 ---
 
-The first stage of [The Unified Kill Chain](https://www.unifiedkillchain.com/) is *reconnaissance*. And reconnaissance begins with the wealth of information available through *passive reconnaissance*. Essentially, passive recon is researching about a target through public means. For a brief primer on this type of research, I took a [TryHackMe room](https://tryhackme.com/jr/passiverecon) on it. This article follows the flow of my learnings through that room.
-
+The first stage of [The Unified Kill Chain](https://www.unifiedkillchain.com/) is *reconnaissance*. And reconnaissance begins with the wealth of information available through *passive reconnaissance*.
+---
+In a few words, passive recon is researching about a target through public means. For a brief primer on this type of research, I took a [TryHackMe room](https://tryhackme.com/jr/passiverecon) on it. This article follows the flow of my learnings through that room.
 On the command line, there are a few essential utilities to reveal this data without the target necessarily knowing you’re researching about them. I find these command-line tools far more efficient than their Google-and-GUI counterparts.
 
 Because these commands did not come installed on my Raspberry Pi, I had to run `sudo apt install dnsutils whois`.

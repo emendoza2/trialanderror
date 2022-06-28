@@ -72,6 +72,13 @@
   font-display: swap;
   font-style: normal;
 }
+@font-face {
+  font-family: "TTE";
+  src: url("/assets/fonts/TT2020StyleB-Regular.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
 
 @font-face {
   font-family: "TTB";

@@ -5,20 +5,41 @@ layout: base
     <main class="text-lg font-redaction">
         <article class="max-w-prose post">
             <header class="mb-4">
-                <nav class="mb-4 text-amber-900 text-base font-tte"><a href="/">&larr; Home</a></nav>
+                <nav class="mb-4 text-amber-900 text-base font-tte"><a href="/">&larr; Home</a>
+                <div class="progressbar"></div>
+                <script>
+                    let processScroll = () => {
+                    let docElem = document.documentElement, 
+                        docBody = document.body,
+                        scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+                        scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+                        scrollRatio = scrollTop / scrollBottom;
+                    
+                    // console.log(scrollTop + ' / ' + scrollBottom + ' / ' + scrollPercent);
+                    
+                        document.querySelector(".progressbar").style.setProperty("--scrollAmount", scrollRatio); 
+                    }
+
+                    document.addEventListener('scroll', processScroll);
+                </script>
+                </nav>
                 <h1 class="text-4xl font-switzer font-black mb-2">{{ title }}</h1>
                 <small class="text-base font-tte">
                     Published <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time> <br>
-                    Tagged: {% for tag in tags %}
-                        {% if not tag in ["post"] %}
-                        {{ tag }}{% if not loop.last %}, {% endif %} 
-                        {%endif%}
-                    {% endfor %}
                 </small>
             </header>
             {% block content %}
                 {{ content | safe }}
             {% endblock %}
+            <footer>
+                <small class="text-base font-tte">
+                    {% for tag in tags %}
+                        {% if not tag in ["post"] %}
+                        #{{ tag }}
+                        {%endif%}
+                    {% endfor %}
+                </small>
+            </footer>
         </article>
     </main>
     {% include "c-footer.njk" %}

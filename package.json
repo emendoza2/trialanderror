@@ -1,7 +1,7 @@
 {
-  "name": "yatas",
+  "name": "trialanderror",
   "version": "1.0.0",
-  "description": "Yet Another Tailwind Apline Starter",
+  "description": "A personal blog",
   "scripts": {
     "clean": "del _site",
     "watch-css": "npx tailwindcss -i ./assets/css/styles.css -o ./_site/css/styles.css -w",
@@ -18,7 +18,7 @@
     "TailwindCSS",
     "Alpine.js"
   ],
-  "author": "Yann Haefliger<hello@needbrainz.com>",
+  "author": "Elijah Mendoza<hello@elijahmendoza.nom.za>",
   "license": "ISC",
   "devDependencies": {
     "@11ty/eleventy": "^1.0.0",

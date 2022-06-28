@@ -30,3 +30,11 @@
 .post > * + * {
     @apply mt-4;
 }
+
+.post .progressbar {
+    border-radius: 50%;
+    background: conic-gradient(currentColor calc(var(--scrollAmount)*360deg),#0000 0);
+    @apply rounded-full w-8 h-8 fixed right-8 top-8 opacity-50 -z-10 sm:opacity-100;
+}
+
+/* believe a lot */ 

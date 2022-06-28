@@ -1,14 +1,14 @@
 ---
 title: "Basic Reconnaissance on TryHackMe: Part 2"
 date: 2022-06-22
-excerpt: 
+# excerpt: 
 tags:
   - TryHackMe
   - Networking
 ---
 
 Active reconnaissance, in contrast to passive reconnaissance, involves direct engagement with the target, not publicly available data. Consequently, it’s much harder to leave traces, but it generally provides deeper insights into the system. 
-
+---
 If active recon is like eating anchovy pizza, passive recon is asking other people about the pizza. Which method tells you more? Which method signals the anchovies that you’re researching them? You get my point.
 
 # Active Recon Commands
