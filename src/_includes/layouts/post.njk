@@ -8,22 +8,17 @@ layout: base
                 <nav class="mb-4 text-amber-900 text-base font-tte"><a href="/">&larr; Home</a>
                 <div class="progressbar"></div>
                 <script>
-                    let processScroll = () => {
-                    let docElem = document.documentElement, 
-                        docBody = document.body,
-                        scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
-                        scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
-                        scrollRatio = scrollTop / scrollBottom;
-                    
-                    // console.log(scrollTop + ' / ' + scrollBottom + ' / ' + scrollPercent);
-                    
+                    document.addEventListener('scroll', function() {
+                        var $doc = document.documentElement, 
+                            $body = document.body,
+                            scrollTop = $doc['scrollTop'] || $body['scrollTop'],
+                            scrollBottom = ($doc['scrollHeight'] || $body['scrollHeight']) - window.innerHeight,
+                            scrollRatio = scrollTop / scrollBottom;                    
                         document.querySelector(".progressbar").style.setProperty("--scrollAmount", scrollRatio); 
-                    }
-
-                    document.addEventListener('scroll', processScroll);
+                    });
                 </script>
                 </nav>
-                <h1 class="text-4xl font-switzer font-black mb-2">{{ title }}</h1>
+                <h1 class="text-4xl font-apfel font-bold mb-2">{{ title }}</h1>
                 <small class="text-base font-tte">
                     Published <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time> <br>
                 </small>

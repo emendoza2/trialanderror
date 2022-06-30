@@ -19,12 +19,11 @@
         text-decoration-color: rgba(0,0,0,0);
     }
     pre, code, article code[class*="language-"], pre[class*="language-"] {
-        @apply font-computermoderntypewriter;
+        @apply font-tte;
     }
     article pre[class*="language-"] {
         @apply p-4 rounded-md -mx-4;
     }
-    b {}
 }
 
 .post > * + * {
@@ -34,7 +33,7 @@
 .post .progressbar {
     border-radius: 50%;
     background: conic-gradient(currentColor calc(var(--scrollAmount)*360deg),#0000 0);
-    @apply rounded-full w-8 h-8 fixed right-8 top-8 opacity-50 -z-10 sm:opacity-100;
+    @apply rounded-full w-8 h-8 fixed right-8 top-8 opacity-50 -z-10 md:opacity-100;
 }
 
 /* believe a lot */ 

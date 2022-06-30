@@ -59,6 +59,24 @@
 }
 
 @font-face {
+  font-family: "Apfel Grotezk";
+  src: url("/assets/fonts/ApfelGrotezk-Regular.woff2") format("woff2"),
+    url("/assets/fonts/ApfelGrotezk-Regular.woff") format("woff");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Apfel Grotezk";
+  src: url("/assets/fonts/ApfelGrotezk-Fett.woff2") format("woff2"),
+    url("/assets/fonts/ApfelGrotezk-Fett.woff") format("woff");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
   font-family: "TTE";
   src: url("/assets/fonts/TT2020StyleE-Italic.woff2") format("woff2");
   font-weight: 400;
@@ -79,34 +97,3 @@
   font-display: swap;
   font-style: normal;
 }
-
-@font-face {
-  font-family: "TTB";
-  src: url("/assets/fonts/TT2020Base-Italic.woff2") format("woff2");
-  font-weight: 400;
-  font-display: swap;
-  font-style: italic;
-}
-@font-face {
-  font-family: "TTB";
-  src: url("/assets/fonts/TT2020Base-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-display: swap;
-  font-style: normal;
-} 
-
-
-@font-face {
-  font-family: "Computer Modern Typewriter";
-  src: url("/assets/fonts/cmunit.woff") format("woff");
-  font-weight: 400;
-  font-display: swap;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Computer Modern Typewriter";
-  src: url("/assets/fonts/cmuntt.woff") format("woff");
-  font-weight: 400;
-  font-display: swap;
-  font-style: normal;
-} 

@@ -4,12 +4,12 @@
   "description": "A personal blog",
   "scripts": {
     "clean": "del _site",
-    "watch-css": "npx tailwindcss -i ./assets/css/styles.css -o ./_site/css/styles.css -w",
-    "watch-js": "npx esbuild ./assets/js/scripts.js --outfile=./_site/js/scripts.js --bundle --target=es2018 --watch",
-    "start": "NODE_ENV=development concurrently \"node hash\"  \"ELEVENTY_ENV=development eleventy --serve\"  \"npm:watch-*\"",
+    "watch-css": "tailwindcss -i ./assets/css/styles.css -o ./_site/css/styles.css -w",
+    "watch-js": "esbuild ./assets/js/scripts.js --outfile=./_site/js/scripts.js --bundle --target=es2018 --watch",
+    "start": "cross-env NODE_ENV=development concurrently \"node hash\"  \"cross-env ELEVENTY_ENV=development eleventy --serve\"  \"npm:watch-*\"",
     "build-css": "npx tailwindcss -i ./assets/css/styles.css -o ./_site/css/styles.css --minify",
-    "build-js": "npx esbuild ./assets/js/scripts.js --outfile=./_site/js/scripts.js  --bundle --target=es2018 --minify",
-    "build": "NODE_ENV=production concurrently \"npm:build-*\" && node hash && ELEVENTY_ENV=production eleventy",
+    "build-js": "esbuild ./assets/js/scripts.js --outfile=./_site/js/scripts.js  --bundle --target=es2018 --minify",
+    "build": "cross-env NODE_ENV=production concurrently \"npm:build-*\" && node hash && cross-env ELEVENTY_ENV=production eleventy",
     "publish:page": "node -r dotenv/config scripts/publish-page"
   },
   "keywords": [
@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@11ty/eleventy-plugin-syntaxhighlight": "^4.0.0",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.1",
     "markdown-it": "^13.0.1",
     "markdown-it-image-figures": "^2.1.0"

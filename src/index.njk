@@ -1,6 +1,6 @@
 ---
 title: Trial & Error
-description: Yet Another Tailwind Alpine Starter Project for 11ty!
+description: Ruminations of a cybersecurity student
 layout: page
 pagination:
   data: collections.post
@@ -9,13 +9,13 @@ pagination:
 ---
 
 <header class="mb-8">
-  <h1 class="text-5xl font-black font-switzer">Trial & Error</h1>
-  <p>Ruminations of a cybersecurity student</p>
+  <h1 class="text-6xl font-bold font-apfel">{{ title if title else site.title }}</h1>
+  <p>{{ site.tagline }}</p>
 </header>
 
 
 <section class="mb-6">
-  <h2 class="text-3xl font-switzer uppercase tracking-wide font-black mb-2">Posts</h2>
+  <h2 class="text-3xl font-apfel uppercase tracking-wide font-bold mb-2">Posts</h2>
   <ul>
     {% for post in posts %}
       <li class="pb-4">
@@ -33,11 +33,12 @@ pagination:
 </section>
 
 {% block footer %}
-<footer class="py-4 ">
-  <h2 class="text-3xl font-switzer uppercase tracking-wide font-black mb-2">Hello</h2>
+<footer class="py-4">
+  <h2 class="text-3xl font-apfel uppercase tracking-wide font-bold mb-2">Hello</h2>
   <p class="mb-4">I&rsquo;m Elijah Mendoza, a freshman and full-stack web developer learning cybersecurity.</p>
-  <address class="font-tte text-sm">
+  <address class="font-tte text-sm not-italic">
     &#128231; <a target="_blank" href="mailto:hi%40elijahmendoza.nom.za">hi&commat;elijahmendoza.nom.za</a><br/>
+    <a target="_blank" href="https://netsectap.com/professors" class="decoration-transparent">#netsectap</a>  
   </address>
 </footer>
 {% endblock %}
