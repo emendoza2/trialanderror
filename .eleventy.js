@@ -32,7 +32,7 @@ module.exports = function (eleventyConfig) {
     'src/**/*.(png|jpg|jpeg|gif|svg|webp|avif)'
   );
 
-  eleventyConfig.addPassthroughCopy("assets/fonts");
+  eleventyConfig.addPassthroughCopy({ static: "/" });
 
   eleventyConfig.setLibrary("md", md);
 
