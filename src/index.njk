@@ -5,7 +5,7 @@ layout: page
 pagination:
   data: collections.post
   alias: posts
-  size: 2
+  size: 3
 ---
 <header class="mb-8 text-center">
   <h1 class="text-6xl font-bold font-redaction20 hover:font-redaction70">{{ title or site.title }}</h1>
@@ -16,13 +16,13 @@ pagination:
 <section class="mb-6">
   <h2 class="text-3xl font-redaction uppercase tracking-wide text-center my-4">Essays</h2>
   <ul>
-    {% for post in posts %}
+    {% for post in posts | reverse %}
       <li class="pb-4">
         <article class="font-atkinson max-w-prose">
           <h3 class="text-3xl md:text-5xl leading-tight my-4 font-redaction20"><a href="{{ post.url | url}}" class="unstyled hover:underline decoration-1">{{ post.data.title }}</a></h3>
-          {%- if post.data.page.excerpt -%}
-              <p class="leading-normal">{{ post.data.page.excerpt | toHTML | safe }}</p>
-          {%- endif -%}
+          <p class="leading-normal">
+            {{ post | excerpt | safe }}
+          </p>
           <div class="mt-2 flex justify-between text-amber-900"><a href="{{ post.url | url}}"  class="font-dmmono font-medium decoration-transparent px-2 py-1 border-b border-current">Read &rarr;</a> <div><time datetime="{{ post.date | htmlDateString }}" class="font-dmmono text-sm">{{ post.date | readableDate }}</time></div></div>
         </article>
       </li>

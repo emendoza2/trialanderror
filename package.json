@@ -34,10 +34,12 @@
     "tailwindcss": "^3.0.7"
   },
   "dependencies": {
+    "@11ty/eleventy-img": "^2.0.1",
     "@11ty/eleventy-plugin-syntaxhighlight": "^4.0.0",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.1",
     "markdown-it": "^13.0.1",
-    "markdown-it-image-figures": "^2.1.0"
+    "markdown-it-image-figures": "^2.1.0",
+    "markdown-it-remove": "^1.0.2"
   }
 }

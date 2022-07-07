@@ -50,15 +50,17 @@ const formatters = {
 
     writeLine('');
     writeLine('```' + language);
-    writeLine(formatRichText(rich_text));
+    writeLine(formatRichText(rich_text, true));
     writeLine('```');
     isLast && writeLine('');
   },
   image({ block, writeLine, isLast, getConfig }) {
     const { caption, type, [type]: config } = getConfig(block);
 
+    const captionEscaped = escape(formatRichText(caption), '"')
+
     writeLine('');
-    writeLine(`![${formatRichText(caption)}](./${config.name})`);
+    writeLine(caption ? `{% figure "${captionEscaped}" %}{% image "${config.name}", "${captionEscaped}" %}{% endfigure %}` : `{% image "${config.name}" %}`);
     isLast && writeLine('');
   },
   // TODO: support multiple types of callouts
@@ -118,7 +120,8 @@ ${tags.multi_select.map(({ name }) => `  - ${name}`).join('\n')}
 ---`;
 }
 
-function formatRichText(richTextObjects = []) {
+function formatRichText(richTextObjects = [], pre = false) {
+  // if (/\\/.test(JSON.stringify(richTextObjects))) console.log(richTextObjects)
   return richTextObjects
     .map(({ type, [type]: config, annotations }, i) => {
       if (type !== 'text') return ''; // TODO: support `mention` and `equation`
@@ -143,6 +146,7 @@ function formatRichText(richTextObjects = []) {
       const strikethrough = formatFromAnnotations('strikethrough', '~~');
       const underline = formatFromAnnotations('underline', ''); // no-op for Markdown
       const code = formatFromAnnotations('code', '`');
+      const newlines = (content) => pre ? content : escape(content, "\n");
 
       // applied in reverse order
       const formatter = compose(
@@ -151,7 +155,8 @@ function formatRichText(richTextObjects = []) {
         italic,
         strikethrough,
         underline,
-        code
+        code,
+        newlines
       );
 
       return formatter(config.content);
@@ -176,6 +181,10 @@ function today() {
   const [date] = new Date().toISOString().split('T');
 
   return date;
+}
+
+function escape(str, token) {
+  return str.replace(new RegExp(token, "g"), (s) => "\\" + s);
 }
 
 export { formatters, frontMatter };

@@ -1,6 +1,6 @@
 ---
 title: "Basic Reconnaissance on TryHackMe: Part 2"
-date: 2022-07-07
+date: 2022-06-23
 excerpt: 
 tags:
   - TryHackMe
@@ -8,7 +8,6 @@ tags:
 ---
 
 Active reconnaissance, in contrast to passive reconnaissance, requires direct engagement with a target instead of publicly available data. Consequently, with this type of research, it’s harder to avoid leaving traces, but it generally provides deeper insights into the system. 
-
 ---
 
 If active recon is like eating anchovy pizza, passive recon is asking other people about the pizza. Which method tells you more? Which method signals the anchovies that you’re researching them? You get my point.
@@ -87,17 +86,19 @@ There are several different options for tuning the scan, but when scanning exter
 
 Here are a few highlights from nmap’s `man` page and the TryHackMe lesson.
 | Option | Meaning |
-|:---|---|
+|---|---|
 | `-PR` | ARP scan; most effective on local networks; default |
 | `-PE; -PP; -PM` | ICMP protocol; like ping, which uses echo, with the addition of timestamp and address |
 | `-PU` | UDP ping; some adminstrators neglect this protocol, unlike TCP; if a device has a port open, however, it won’t respond |
-| `-PS; -PS21-23,80,443` `-PA` | TCP SYN ping; whether the port is open or not, a response is a signal to nmap that the host is online. TCP ACK works the same way, but requires privileged access. |
+| `-PS; -PS21-23,80,443; -PA` | TCP SYN ping; whether the port is open or not, a response is a signal to nmap that the host is online. TCP ACK works the same way, but requires privileged access. |
 
 On my home network, I found that all options worked similarly well, with the exception of `-PS` (TCP SYN) run without privileges. This was likely because nmap sends an ARP scan as backup regardless of the scan option if privileged.
 
 
 
 Exploring basic active recon reaped a secondary learning: most people who use the internet couldn’t care less about how an TCP request works, but it is indispensable to them. Networking, like anchovy pizza, needs to be actively engaged to make the most of it and protect yourself from it. 
+
+kadjslsdkjalkdjsadkjasldkjasdlkjasdlsajdadskjakjask dk k j kljdkajs lkjsad sakjda klkjadsadsskj askj `drperp eprper ee e e e ee e e e8 79e87 e987e92879e879287 e9827879 e7e827 98279 78987 298 798e7 987 928 798e7 98e79 87e9 872987p`
 
 🐟🍕
 

@@ -29,7 +29,10 @@ async function main() {
       return writeFile(`${dir}/${name}`, blob.stream())
     })
     const fileWriter = writeFile(`${dir}/index.md`, printer.print(data));
-    return await Promise.all([...attachmentPromises, fileWriter]);
+    const results = await Promise.all([...attachmentPromises, fileWriter]);
+    
+    console.log("Published", dir);
+    return results;
   } catch (error) {
     console.error(error);
   }

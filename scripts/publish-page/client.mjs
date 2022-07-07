@@ -3,6 +3,7 @@ import fetch from "node-fetch";
 import slugify from "slugify";
 import { createHash } from "crypto";
 import { extname } from "path";
+import mime from "mime";
 
 async function readBlocks(client, blockId) {
   blockId = blockId.replaceAll("-", "");
@@ -24,7 +25,7 @@ async function readBlocks(client, blockId) {
         const blob = await fetch(url).then((res) => res.blob());
         const name =
           createHash("sha1").update(urlWithoutQuery).digest("hex") +
-          extname(urlWithoutQuery); // ew
+          (extname(urlWithoutQuery) || "." + mime.getExtension(blob.type)); // ew
         const attachment = {
           ...block[block.type][configType],
           blob,
