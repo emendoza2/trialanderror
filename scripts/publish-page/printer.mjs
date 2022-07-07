@@ -32,14 +32,15 @@ class Printer {
     }
 
     const writer = this.#writers[block.type];
+    if (!writer) console.log("Could not write block", block, "Parent", parent)
 
-    writer?.({
+    const { close, indents = true } = writer?.({
       block,
       parent,
       index,
       blocks,
       writeLine: this.#writeLine.bind(this),
-
+  
       // convenience fields
       isFirst: index === 0,
       isLast: index === blocks.length - 1,
@@ -48,13 +49,14 @@ class Printer {
       getConfig({ type, [type]: config }) {
         return config;
       },
-    });
+    }) || {};
 
     if (block.has_children) {
-      this.#indent();
+      indents && this.#indent();
       this.#writeContent(block.children, block, index, blocks);
-      this.#dedent();
+      indents && this.#dedent();
     }
+    close?.();
   }
 
   #writeLine(content = '') {

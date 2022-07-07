@@ -78,6 +78,34 @@ const formatters = {
     writeLine(`> ${formatRichText(rich_text)}`);
     isLast && writeLine('');
   },
+  table({ block, writeLine, getConfig }) {
+    const { has_row_header: has_column_header, has_column_header: has_row_header, table_width } = getConfig(block);
+    if (has_row_header && !has_column_header) return { indents: false };
+    writeLine('')
+    writeLine('<table>')
+    return { close() { 
+      writeLine('</table>')
+      writeLine('')
+    } }
+  },
+  table_row({ block, parent, isFirst, writeLine, getConfig }) {
+    // HASSLE! BUG! The column_header and row_header meanings are reversed in the API. 7/7/22.
+    const { has_row_header: has_column_header, has_column_header: has_row_header, table_width } = getConfig(parent);
+
+    const { cells } = block.table_row;
+
+    // Just because OCD... a normal markdown table generator format
+    if (has_row_header && !has_column_header) {
+      writeLine(`| ${cells.map(formatRichText).join(' | ')} |`)
+      isFirst && writeLine("|---".repeat(table_width)+"|")  
+      return;
+    }
+
+    writeLine(`<tr>${cells.map((rich_text, i) => {
+      const tag = ((isFirst && has_row_header) || (i === 0 && has_column_header)) ? "th" : "td";
+      return `<${tag}>${formatRichText(rich_text)}</${tag}>`
+    }).join('')}</tr>`);
+  },
 };
 
 function frontMatter({ title, date, excerpt, tags }) {

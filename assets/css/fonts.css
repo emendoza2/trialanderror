@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Piazzolla:ital,opsz,wght@0,8..30,400;0,8..30,600;1,8..30,400;1,8..30,600&display=swap');
+
 @font-face {
   font-family: "Redaction";
   font-style: italic;
@@ -38,6 +41,26 @@
   font-weight: bold;
   font-display: swap;
   src: url("/fonts/Redaction_70-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Redaction20";
+  font-style: italic;
+  font-display: swap;
+  src: url("/fonts/Redaction_20-Italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Redaction20";
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/Redaction_20-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Redaction20";
+  font-style: normal;
+  font-weight: bold;
+  font-display: swap;
+  src: url("/fonts/Redaction_20-Bold.woff2") format("woff2");
 }
 
 @font-face {

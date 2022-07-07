@@ -1,14 +1,16 @@
 ---
 title: "Basic Reconnaissance on TryHackMe: Part 2"
-date: 2022-06-22
-# excerpt: 
+date: 2022-07-07
+excerpt: 
 tags:
   - TryHackMe
   - Networking
 ---
 
-Active reconnaissance, in contrast to passive reconnaissance, involves direct engagement with the target, not publicly available data. Consequently, it’s much harder to leave traces, but it generally provides deeper insights into the system. 
+Active reconnaissance, in contrast to passive reconnaissance, requires direct engagement with a target instead of publicly available data. Consequently, with this type of research, it’s harder to avoid leaving traces, but it generally provides deeper insights into the system. 
+
 ---
+
 If active recon is like eating anchovy pizza, passive recon is asking other people about the pizza. Which method tells you more? Which method signals the anchovies that you’re researching them? You get my point.
 
 # Active Recon Commands
@@ -84,10 +86,18 @@ $ sudo nmap -sn 192.168.1.1-255 # the subnet depends on your network
 There are several different options for tuning the scan, but when scanning external networks, nmap defaults to SYN, TCP, or ICMP techniques. A SYN scan is least preferable, because it requires more connections, but nmap resorts to it without privileged access. On a local network, nmap performs an ARP scan by default. 
 
 Here are a few highlights from nmap’s `man` page and the TryHackMe lesson.
+| Option | Meaning |
+|:---|---|
+| `-PR` | ARP scan; most effective on local networks; default |
+| `-PE; -PP; -PM` | ICMP protocol; like ping, which uses echo, with the addition of timestamp and address |
+| `-PU` | UDP ping; some adminstrators neglect this protocol, unlike TCP; if a device has a port open, however, it won’t respond |
+| `-PS; -PS21-23,80,443` `-PA` | TCP SYN ping; whether the port is open or not, a response is a signal to nmap that the host is online. TCP ACK works the same way, but requires privileged access. |
 
-On my home network, I found that all options worked similarly well, with the exception of `-PS` run without privileges. This was likely because nmap sends an ARP scan as backup regardless of the scan option if privileged.
+On my home network, I found that all options worked similarly well, with the exception of `-PS` (TCP SYN) run without privileges. This was likely because nmap sends an ARP scan as backup regardless of the scan option if privileged.
 
 
 
-Exploring basic active recon reaped a secondary learning: most people who use the internet couldn’t care less about how an TCP request works, but it is indispensable to them. Networking, like fungi, icebergs, or anchovy flavor, goes deep beneath the surface, and you need to actively engage it to make the most of it and protect yourself from it. 
+Exploring basic active recon reaped a secondary learning: most people who use the internet couldn’t care less about how an TCP request works, but it is indispensable to them. Networking, like anchovy pizza, needs to be actively engaged to make the most of it and protect yourself from it. 
+
+🐟🍕
 

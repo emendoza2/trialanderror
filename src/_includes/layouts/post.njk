@@ -2,10 +2,10 @@
 layout: base
 ---
 <div class="container p-8 mx-auto flex flex-col justify-between min-h-screen">
-    <main class="text-lg font-redaction">
+    <main class="text-lg font-atkinson">
         <article class="max-w-prose post">
             <header class="mb-4">
-                <nav class="mb-4 text-amber-900 text-base font-tte"><a href="/">&larr; Home</a>
+                <nav class="mb-4 text-amber-900 text-base font-dmmono"><a href="/" class="font-dmmono font-medium decoration-transparent px-2 py-1 border-b border-current">&larr; Home</a>
                 <div class="progressbar"></div>
                 <script>
                     document.addEventListener('scroll', function() {
@@ -18,16 +18,16 @@ layout: base
                     });
                 </script>
                 </nav>
-                <h1 class="text-4xl font-apfel font-bold mb-2">{{ title }}</h1>
-                <small class="text-base font-tte">
+                <div class="text-base font-dmmono mb-4">
                     Published <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time> <br>
-                </small>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-redaction20 text-center my-8 leading-tight">{{ title }}</h1>
             </header>
             {% block content %}
                 {{ content | safe }}
             {% endblock %}
             <footer>
-                <small class="text-base font-tte">
+                <small class="text-base font-dmmono">
                     {% for tag in tags %}
                         {% if not tag in ["post"] %}
                         #{{ tag }}
