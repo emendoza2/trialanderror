@@ -1,10 +1,12 @@
-const htmlmin = require("html-minifier");
-const UpgradeHelper = require("@11ty/eleventy-upgrade-help");
-const MarkdownIt = require("markdown-it");
-const { removeMdPlugin } = require("markdown-it-remove");
-const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const Image = require("@11ty/eleventy-img");
 const path = require("path");
+const htmlmin = require("html-minifier");
+const MarkdownIt = require("markdown-it"),
+  mk = require("markdown-it-katex"),
+  { removeMdPlugin } = require("markdown-it-remove");
+
+const Image = require("@11ty/eleventy-img");
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+
 const excerptFilter = require("./plugins/excerpt");
 
 const MARKDOWN_OPTIONS = {
@@ -13,8 +15,8 @@ const MARKDOWN_OPTIONS = {
   typographer: true,
 };
 
-const md = new MarkdownIt(MARKDOWN_OPTIONS);
-const mdStrip = new MarkdownIt(MARKDOWN_OPTIONS).use(removeMdPlugin, {});
+const md = new MarkdownIt(MARKDOWN_OPTIONS).use(mk);
+const mdStrip = new MarkdownIt(MARKDOWN_OPTIONS).use(removeMdPlugin, {}); // should this have mk as well?
 
 module.exports = function (eleventyConfig) {
   /**
@@ -94,17 +96,30 @@ module.exports = function (eleventyConfig) {
     return dateObj.toJSON().slice(0, 10);
   });
 
-  eleventyConfig.addFilter("excerpt", excerptFilter(md, ["<!-- excerpt -->", "<p>---</p>", "</p>"]));
+  eleventyConfig.addFilter(
+    "excerpt",
+    excerptFilter(md, ["<!-- excerpt -->", "<p>---</p>", "</p>"])
+  );
   /**
    * Shortcodes
    */
+  eleventyConfig.addShortcode("mentionPageId", function (pageId){
+    const { url, data: { title } } = this.ctx.collections.all.find(page => {
+      return normalizePageId(page.data?.pageId) === normalizePageId(pageId)
+    });
+    console.log(url, title)
+    if (!url || !title) return `[link]`;
+    return `[${title}](${url})`;
+  })
   eleventyConfig.addPairedShortcode("figure", function (content, caption = "") {
     return `<figure>${md.renderInline(
       content.trim()
     )}${caption ? `<figcaption>${md.renderInline(caption)}</figcaption>` : ""}</figure>`;
   });
+  eleventyConfig.addPairedShortcode("aside", function(content) {
+    return `<aside>${md.renderInline(content.trim())}</aside>`;
+  });
   eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
-
 
   return {
     dir: {
@@ -135,33 +150,13 @@ async function imageShortcode(
     urlPath: "/assets/img",
     outputDir: "./_site/assets/img",
   });
-  // let lowestSrc = stats["jpeg"][0];
-
-  // const srcset = Object.keys(stats).reduce(
-  //   (acc, format) => ({
-  //     ...acc,
-  //     [format]: stats[format].reduce(
-  //       (_acc, curr) => `${_acc} ${curr.srcset} ,`,
-  //       ""
-  //     ),
-  //   }),
-  //   {}
-  // );
-
-  // const source = `<source type="image/webp" srcset="${srcset["webp"]}" >`;
-
-  // const img = `<img
-  //   loading="lazy"
-  //   ${alt ? `alt="${alt}"` : ""}
-  //   src="${lowestSrc.url}"
-  //   sizes='(min-width: 1024px) 1024px, 100vw'
-  //   srcset="${srcset["jpeg"]}"
-  //   width="${lowestSrc.width}"
-  //   height="${lowestSrc.height}">`;
-
-  // return `<div class="image-wrapper"><picture> ${source} ${img} </picture></div>`;
   return Image.generateHTML(stats, {
     alt: mdStrip.renderInline(alt),
     sizes,
   });
+}
+
+function normalizePageId(pageId = '') {
+  // if (pageId) console.log(pageId)
+  return pageId.replace(/\-/g, '')
 }

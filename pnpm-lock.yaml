@@ -15,6 +15,7 @@ specifiers:
   html-minifier: ^4.0.0
   markdown-it: ^13.0.1
   markdown-it-image-figures: ^2.1.0
+  markdown-it-katex: ^2.0.3
   markdown-it-remove: ^1.0.2
   md5: ^2.3.0
   postcss: ^8.4.5
@@ -27,6 +28,7 @@ dependencies:
   dotenv: 16.0.1
   markdown-it: 13.0.1
   markdown-it-image-figures: 2.1.0_markdown-it@13.0.1
+  markdown-it-katex: 2.0.3
   markdown-it-remove: 1.0.2
 
 devDependencies:
@@ -1971,6 +1973,13 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /katex/0.6.0:
+    resolution: {integrity: sha512-rS4mY3SvHYg5LtQV6RBcK0if7ur6plyEukAOV+jGGPqFImuzu8fHL6M752iBmRGoUyF0bhZbAPoezehn7xYksA==}
+    hasBin: true
+    dependencies:
+      match-at: 0.1.1
+    dev: false
+
   /kind-of/3.2.2:
     resolution: {integrity: sha512-NOW9QQXMoZGg/oqnVNoNTTIFEIid1627WCffUBJEdMxYApq7mNE7CpzucIPc+ZQg25Phej7IJSmX3hO+oblOtQ==}
     engines: {node: '>=0.10.0'}
@@ -2102,6 +2111,12 @@ packages:
       markdown-it: 13.0.1
     dev: false
 
+  /markdown-it-katex/2.0.3:
+    resolution: {integrity: sha512-nUkkMtRWeg7OpdflamflE/Ho/pWl64Lk9wNBKOmaj33XkQdumhXAIYhI0WO03GeiycPCsxbmX536V5NEXpC3Ng==}
+    dependencies:
+      katex: 0.6.0
+    dev: false
+
   /markdown-it-remove/1.0.2:
     resolution: {integrity: sha512-DWJlmeEN/9Vw5d0TKuGiX/8ydSGiTA0ZiPJwq/s5lERnkgNQt63aPVd15ouFjg7QGX4G3di005cda070b6BSGg==}
     dev: false
@@ -2126,6 +2141,10 @@ packages:
       linkify-it: 4.0.1
       mdurl: 1.0.1
       uc.micro: 1.0.6
+    dev: false
+
+  /match-at/0.1.1:
+    resolution: {integrity: sha512-h4Yd392z9mST+dzc+yjuybOGFNOZjmXIPKWjxBd1Bb23r4SmDOsk2NYCU2BMUBGbSpZqwVsZYNq26QS3xfaT3Q==}
     dev: false
 
   /maximatch/0.1.0:

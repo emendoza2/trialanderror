@@ -1,6 +1,7 @@
 ---
 title: "Basic Reconnaissance on TryHackMe: Part 1"
 date: 2022-06-22
+pageId: d0cc91c3c9fa439f953861e1bae5d5f8
 tags:
   - TryHackMe
   - Networking

@@ -40,6 +40,7 @@
     "dotenv": "^16.0.1",
     "markdown-it": "^13.0.1",
     "markdown-it-image-figures": "^2.1.0",
+    "markdown-it-katex": "^2.0.3",
     "markdown-it-remove": "^1.0.2"
   }
 }

@@ -56,7 +56,6 @@ const formatters = {
   },
   image({ block, writeLine, isLast, getConfig }) {
     const { caption, type, [type]: config } = getConfig(block);
-
     const captionEscaped = escape(formatRichText(caption), '"')
 
     writeLine('');
@@ -110,11 +109,12 @@ const formatters = {
   },
 };
 
-function frontMatter({ title, date, excerpt, tags }) {
+function frontMatter({ title, date, excerpt, tags, pageId }) {
   return `---
 title: "${title.title.map(({ plain_text }) => plain_text).join('')}"
 date: ${date.date?.start || today()}${excerpt ? `
 excerpt: ${formatRichText(excerpt.rich_text)}`: ``}
+pageId: ${pageId}
 tags:
 ${tags.multi_select.map(({ name }) => `  - ${name}`).join('\n')}
 ---`;
@@ -124,7 +124,10 @@ function formatRichText(richTextObjects = [], pre = false) {
   // if (/\\/.test(JSON.stringify(richTextObjects))) console.log(richTextObjects)
   return richTextObjects
     .map(({ type, [type]: config, annotations }, i) => {
-      if (type !== 'text') return ''; // TODO: support `mention` and `equation`
+      if (type !== 'text' && type !== 'equation' && type !== 'mention' || (type === 'mention' && config.type !== 'page')) {
+        console.log(type, config, annotations);
+        return ''; // TODO: support `mention` and `equation`
+      }
 
       const prev = richTextObjects[i - 1];
       const next = richTextObjects[i + 1];
@@ -140,26 +143,30 @@ function formatRichText(richTextObjects = [], pre = false) {
         next?.annotations
       );
 
+      const page = formatFromConfig('page', '', `{% mentionPageId "${config.page?.id}" %}`);
       const link = formatFromConfig('link', '[', `](${config.link?.url})`);
       const bold = formatFromAnnotations('bold', '**');
       const italic = formatFromAnnotations('italic', '*');
       const strikethrough = formatFromAnnotations('strikethrough', '~~');
-      const underline = formatFromAnnotations('underline', ''); // no-op for Markdown
+      const underline = formatFromAnnotations('underline', '<u>', '</u>');
       const code = formatFromAnnotations('code', '`');
+      const equation = formatFromConfig('expression', "$", "$");
       const newlines = (content) => pre ? content : escape(content, "\n");
 
       // applied in reverse order
       const formatter = compose(
+        page,
         link,
         bold,
         italic,
         strikethrough,
         underline,
         code,
+        equation,
         newlines
       );
 
-      return formatter(config.content);
+      return formatter(config.content || config.expression || '');
     })
     .join('');
 }

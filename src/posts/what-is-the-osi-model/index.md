@@ -2,6 +2,7 @@
 title: "What is the OSI Model?"
 date: 2022-07-07
 excerpt: The internet is founded on the principles of something called the OSI (Open Systems Interconnection) model. Although it's not the most comfortable to learn about, but it is essential. This is a high-level summary of OSI key concepts.
+pageId: 0db7b339e4d94972bce9365e105856f6
 tags:
   - TryHackMe
   - Networking

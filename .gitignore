@@ -30,3 +30,6 @@ _site
 
 #Generated hash data
 _data/hash.json
+
+# eleventy-fetch cache
+.cache

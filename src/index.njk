@@ -5,7 +5,7 @@ layout: page
 pagination:
   data: collections.post
   alias: posts
-  size: 3
+  size: 10
 ---
 <header class="mb-8 text-center">
   <h1 class="text-6xl font-bold font-redaction20 hover:font-redaction70">{{ title or site.title }}</h1>
@@ -14,7 +14,7 @@ pagination:
 
 <main class="max-w-prose mx-auto">
 <section class="mb-6">
-  <h2 class="text-3xl font-redaction uppercase tracking-wide text-center my-4">Essays</h2>
+  <h2 class="text-3xl font-redaction uppercase tracking-wide text-center my-4">Posts</h2>
   <ul>
     {% for post in posts | reverse %}
       <li class="pb-4">

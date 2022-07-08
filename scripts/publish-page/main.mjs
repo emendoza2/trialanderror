@@ -32,6 +32,7 @@ async function main() {
     const results = await Promise.all([...attachmentPromises, fileWriter]);
     
     console.log("Published", dir);
+    console.log("With attachments", data?.attachments)
     return results;
   } catch (error) {
     console.error(error);

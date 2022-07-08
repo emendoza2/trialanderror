@@ -2,8 +2,10 @@ import { Client } from "@notionhq/client";
 import fetch from "node-fetch";
 import slugify from "slugify";
 import { createHash } from "crypto";
-import { extname } from "path";
+import { extname, parse } from "path";
 import mime from "mime";
+import EleventyFetch from "@11ty/eleventy-fetch";
+import { Blob } from "buffer";
 
 async function readBlocks(client, blockId) {
   blockId = blockId.replaceAll("-", "");
@@ -12,27 +14,21 @@ async function readBlocks(client, blockId) {
     const { results } = await client.blocks.children.list({
       block_id: blockId,
     });
-    let attachments = [];
+
+    const attachmentRequestsMap = results
+      .filter(block => ["image", "video"]
+      .includes(block.type)).map(async (block) => {
+        return [block.id, await getAttachment(block)];
+      });
+
+    const attachmentsMap = new Map(await Promise.all(attachmentRequestsMap));
+    let attachments = Array.from(attachmentsMap.values()); // LET! EW LET
 
     const childRequests = results.map(async (block) => {
-      if (block.has_children) {
-        const children = await readBlocks(client, block.id);
-        return { ...block, children };
-      } else if (["image", "video"].includes(block.type)) {
+      if (["image", "video"].includes(block.type)) {
         const configType = block[block.type].type;
-        const url = block[block.type][configType].url;
-        const urlWithoutQuery = url.split("?")[0];
-        const blob = await fetch(url).then((res) => res.blob());
-        const name =
-          createHash("sha1").update(urlWithoutQuery).digest("hex") +
-          (extname(urlWithoutQuery) || "." + mime.getExtension(blob.type)); // ew
-        const attachment = {
-          ...block[block.type][configType],
-          blob,
-          name,
-        };
-        attachments.push(attachment); // side effects hmmmmm
-        return {
+        const attachment = attachmentsMap.get(block.id);
+        block = {
           ...block,
           [block.type]: {
             ...block[block.type],
@@ -40,11 +36,15 @@ async function readBlocks(client, blockId) {
           },
         };
       }
+      if (block.has_children) {
+        const [children, newAttachments] = await readBlocks(client, block.id);
+        attachments = attachments.concat(newAttachments);
+        return { ...block, children };
+      }
       return block;
     });
 
     const expandedResults = await Promise.all(childRequests);
-
     return [expandedResults, attachments];
   } catch (error) {
     handleClientError(error);
@@ -82,7 +82,7 @@ async function readPage(client, pageId) {
 
     return {
       slug: getSlug(title),
-      frontMatter: { title, date, excerpt, tags },
+      frontMatter: { title, date, excerpt, tags, pageId },
       content,
       attachments,
     };
@@ -118,6 +118,28 @@ function getSlug({ title }) {
       remove: /[:!\?]/g,
     }
   );
+}
+
+async function getAttachment({ type, [type]: config }) {
+  const configType = config.type;
+  const url = config[configType].url;
+  const urlWithoutQuery = url.split("?")[0];
+  const blob = await EleventyFetch(url, {
+    type: "buffer",
+    duration: "1d"
+  }).then((buffer) => new Blob([buffer]));
+  
+  const { name: filename, ext } = parse(urlWithoutQuery)
+
+  const name =
+    filename + "-" + createHash("sha1").update(urlWithoutQuery).digest("hex").slice(0, 8) +
+    (ext || "." + mime.getExtension(blob.type)); // ew
+
+  return {
+    ...config[configType],
+    blob,
+    name,
+  };
 }
 
 export { getClient };
