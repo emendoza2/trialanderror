@@ -1,22 +1,22 @@
 ---
 title: "What is the OSI Model?"
 date: 2022-07-07
-excerpt: The internet is founded on the principles of something called the OSI (Open Systems Interconnection) model. Although it's not the most comfortable to learn about, but it is essential. This is a high-level summary of OSI key concepts.
+excerpt: The internet is founded on the principles of the OSI (Open Systems Interconnection) model. Although it's not the most comfortable to learn about, it is essential. This is a high-level summary of OSI key concepts.
 pageId: 0db7b339e4d94972bce9365e105856f6
 tags:
   - TryHackMe
   - Networking
 ---
 
-{% figure "" %}{% image "a9cde219c212c9e9463ab2fc54fe8132a58aff91.png", "" %}{% endfigure %}
+{% image "Untitled-a9cde219.png" %}
 
 Statistics say that this little WiFi icon is what 99% of people imagine when they think of the word “network” [[Source](https://www.goodreads.com/quotes/70193-over-85-of-all-statistics-are-made-up-on-the)]. 
 
-{% figure "" %}{% image "d9bbd4d9e69dde0148af24bed034c94dc4d49b28.jpeg", "" %}{% endfigure %}
+{% image "photo-1568081458553-a47849c2a487-d9bbd4d9.jpg" %}
 
 And that is a photo of a fungus. 
 
-{% figure "" %}{% image "c0b48a3e9d4c881d50e2ec1a51564fd412d2f48d.jpg", "" %}{% endfigure %}
+{% image "iceberg-g229e42ae9_1920-c0b48a3e.jpg" %}
 
 Finally, this is an iceberg—at least, the most that those who ever get to see an iceberg will see of one. 
 
@@ -70,7 +70,7 @@ Let’s jump right in.
 
 ## Layer 7 – Application
 
-{% figure "An illustration of this layer. FTP operates on the Application layer of the OSI model." %}{% image "d7e5a64bd2aa4ec903838aeb08e42e20ba1292a9.svg", "An illustration of this layer. FTP operates on the Application layer of the OSI model." %}{% endfigure %}
+{% figure "An illustration of this layer. FTP operates on the Application layer of the OSI model." %}{% image "ftp_anim-d7e5a64b.svg", "An illustration of this layer. FTP operates on the Application layer of the OSI model." %}{% endfigure %}
 
 Layer 7 of the OSI model is the Application layer. This layer provides a high-level interface to network data, and this is what the user most often sees. Aside from FTP, HTTP is another ubiquitous example of a service that operates on this layer. 
 
@@ -108,7 +108,7 @@ At this layer, data get a new name! They are called *segments* when using TCP or
 
 ## Layer 3 – Network
 
-{% figure "ICMP (Internet Control Messaging Protocol) operates on the Network layer." %}{% image "042e1359ec1c1ae371ee5392ac2668897bf24df6.svg", "ICMP (Internet Control Messaging Protocol) operates on the Network layer." %}{% endfigure %}
+{% figure "ICMP (Internet Control Messaging Protocol) operates on the Network layer." %}{% image "ping-042e1359.svg", "ICMP (Internet Control Messaging Protocol) operates on the Network layer." %}{% endfigure %}
 
 The Network layer performs routing between logical addresses, e.g. IPv4 or IPv6 addresses. The Internet Protocol (IP), which runs on this layer, forms the backbone of the Internet. This layer is also responsible for dividing datagrams and segments into smaller packets which the Data Link and Physical layers transmit.  
 
@@ -118,7 +118,7 @@ At the Network layer, data become *packets*.
 
 ARP, MAC
 
-{% figure "The second line in this [Wireshark](https://www.wireshark.org) screenshot displays the Data Link layer of the networking process." %}{% image "8844028eecf5858b4787500656edaa3417d52502.png", "The second line in this [Wireshark](https://www.wireshark.org) screenshot displays the Data Link layer of the networking process." %}{% endfigure %}
+{% figure "The second line in this [Wireshark](https://www.wireshark.org) screenshot displays the Data Link layer of the networking process." %}{% image "Untitled-8844028e.png", "The second line in this [Wireshark](https://www.wireshark.org) screenshot displays the Data Link layer of the networking process." %}{% endfigure %}
 
 The Data Link layer, as opposed to the Network layer, facilitates communication between hardware addresses instead of logical addresses. This type of communication happens on local networks. Every Network Interface Card (NIC) has a Media Access Control (MAC) address burnt into it. 
 
@@ -128,7 +128,7 @@ Each frame stores the source and destination addresses in its *header*, the bits
 
 ## Layer 1 – Physical
 
-{% figure "The amount of cables that cross our world is shocking. There are around 1.3 million kilometers of [undersea cable](https://www.submarinecablemap.com/) spanning six continents. That doesn’t include the uncountable length of private and public optical and copper cables over land." %}{% image "0234a802bdc2c30ed1553c0605c69557db2fe1a0.jpeg", "The amount of cables that cross our world is shocking. There are around 1.3 million kilometers of [undersea cable](https://www.submarinecablemap.com/) spanning six continents. That doesn’t include the uncountable length of private and public optical and copper cables over land." %}{% endfigure %}
+{% figure "The amount of cables that cross our world is shocking. There are around 1.3 million kilometers of [undersea cable](https://www.submarinecablemap.com/) spanning six continents. That doesn’t include the uncountable length of private and public optical and copper cables over land." %}{% image "photo-1625276254563-f0fbbf66a5e7-0234a802.jpg", "The amount of cables that cross our world is shocking. There are around 1.3 million kilometers of [undersea cable](https://www.submarinecablemap.com/) spanning six continents. That doesn’t include the uncountable length of private and public optical and copper cables over land." %}{% endfigure %}
 
 At the Physical layer, data flows in *bits*. This layer is hardly concerned with the content of what is stored in those bits. It sends bits through electrical or optical signals through cables or the air. On the receiving end, it translates those signals into bits.
 
@@ -158,7 +158,7 @@ Application - the way we use the information we communicate (e.g. memories, thou
 
 # In practice
 
-As mentioned earlier, the OSI model is not so clearly-cut in practice as it is in the specification. In practice, the [TCP/IP protocol](https://www.rfc-editor.org/rfc/rfc1180) is more widely implemented. Nevertheless, the OSI model is still useful as what its name suggests: a model. It’s a model for gaining a basic understanding of how the great big internet works, so that when it doesn’t work the way we expect, we know what to do.
+As mentioned earlier, the OSI model is not so clearly-cut in practice as it is in the specification. This [StackExchange post](https://networkengineering.stackexchange.com/questions/6380/osi-model-and-networking-protocols-relationship/6381#6381) clarified it substantially for me. Instead of the OSI model, in practice, the [TCP/IP protocol](https://www.rfc-editor.org/rfc/rfc1180) is more widely implemented. Nevertheless, the OSI model is still useful as what its name suggests: a model. It’s a model for gaining a basic understanding of how the great big internet works, so that when it doesn’t work the way we expect, we know what to do.
 
 🛳💥
 

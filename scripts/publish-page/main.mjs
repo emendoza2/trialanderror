@@ -22,17 +22,18 @@ async function main() {
 
   try {
     const data = await client.pages.fetch(pageId);
+    if (!data) throw new Error("No data found for page with id " + pageId);
+
     const dir = `./src/posts/${data?.slug}`;
 
     await mkdir(dir, { recursive: true });
-    const attachmentPromises = data?.attachments.map(({ blob, name }) => {
-      return writeFile(`${dir}/${name}`, blob.stream())
+    const attachmentPromises = data?.attachments.map(({ buffer, name }) => {
+      return writeFile(`${dir}/${name}`, buffer)
     })
     const fileWriter = writeFile(`${dir}/index.md`, printer.print(data));
     const results = await Promise.all([...attachmentPromises, fileWriter]);
     
     console.log("Published", dir);
-    console.log("With attachments", data?.attachments)
     return results;
   } catch (error) {
     console.error(error);

@@ -64,6 +64,16 @@ article pre[class*="language-"] {
         -o-box-decoration-break: clone;
         box-decoration-break: clone;
     }
+    .post figure {
+        @apply flex flex-col items-center;
+    }
+    .post figcaption {
+        @apply font-redaction italic text-base mt-2;
+
+    }
+    .post img {
+        @apply rounded-md mx-auto;
+    }
 }
 
 /* believe a lot */ 

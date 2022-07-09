@@ -5,6 +5,7 @@
   "dependencies": {
     "@11ty/eleventy-fetch": "^3.0.0",
     "@notionhq/client": "^1.0.4",
+    "file-type": "^17.1.2",
     "mime": "^3.0.0",
     "node-fetch": "^3.2.6",
     "slugify": "^1.6.5"

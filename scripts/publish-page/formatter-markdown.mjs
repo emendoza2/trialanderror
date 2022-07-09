@@ -59,7 +59,7 @@ const formatters = {
     const captionEscaped = escape(formatRichText(caption), '"')
 
     writeLine('');
-    writeLine(caption ? `{% figure "${captionEscaped}" %}{% image "${config.name}", "${captionEscaped}" %}{% endfigure %}` : `{% image "${config.name}" %}`);
+    writeLine(caption && caption.length ? `{% figure "${captionEscaped}" %}{% image "${config.name}", "${captionEscaped}" %}{% endfigure %}` : `{% image "${config.name}" %}`);
     isLast && writeLine('');
   },
   // TODO: support multiple types of callouts
@@ -125,7 +125,6 @@ function formatRichText(richTextObjects = [], pre = false) {
   return richTextObjects
     .map(({ type, [type]: config, annotations }, i) => {
       if (type !== 'text' && type !== 'equation' && type !== 'mention' || (type === 'mention' && config.type !== 'page')) {
-        console.log(type, config, annotations);
         return ''; // TODO: support `mention` and `equation`
       }
 

@@ -8,6 +8,7 @@ const Image = require("@11ty/eleventy-img");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
 const excerptFilter = require("./plugins/excerpt");
+const { readFile } = require("fs/promises");
 
 const MARKDOWN_OPTIONS = {
   html: true,
@@ -150,10 +151,29 @@ async function imageShortcode(
     urlPath: "/assets/img",
     outputDir: "./_site/assets/img",
   });
-  return Image.generateHTML(stats, {
+  return generateImageHTMl(stats, {
     alt: mdStrip.renderInline(alt),
     sizes,
   });
+}
+
+/**
+ * Return SVG as object :() if it's interactive and svg
+ * Wrapper around the EleventyImage.generateHTML function
+ * @param {Image.Metadata} metadata 
+ */
+async function generateImageHTMl(metadata, options) {
+  if (metadata.svg) {
+    const { outputPath, url, width, height } = metadata.svg[0];
+    if (outputPath) {
+      const { alt } = options || {};
+      const contents = await readFile(outputPath, { encoding: 'utf-8' }); // at least I think it is :(
+      if (/<script/.test(contents)) { // i.e. it's interactive so let's do the dangerous thing!
+        return `<object data="${url}" width="${width}" height="${height}">${alt}</object>`
+      } 
+    }
+  }
+  return Image.generateHTML(metadata, options)
 }
 
 function normalizePageId(pageId = '') {

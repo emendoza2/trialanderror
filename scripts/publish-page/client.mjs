@@ -6,6 +6,7 @@ import { extname, parse } from "path";
 import mime from "mime";
 import EleventyFetch from "@11ty/eleventy-fetch";
 import { Blob } from "buffer";
+import { fileTypeFromBuffer } from 'file-type';
 
 async function readBlocks(client, blockId) {
   blockId = blockId.replaceAll("-", "");
@@ -124,20 +125,21 @@ async function getAttachment({ type, [type]: config }) {
   const configType = config.type;
   const url = config[configType].url;
   const urlWithoutQuery = url.split("?")[0];
-  const blob = await EleventyFetch(url, {
+  const buffer = await EleventyFetch(url, {
     type: "buffer",
     duration: "1d"
-  }).then((buffer) => new Blob([buffer]));
-  
-  const { name: filename, ext } = parse(urlWithoutQuery)
+  });
+
+  // I'm sorry. It has to be like this. Just for optimization
+  let { name: filename, ext } = parse(urlWithoutQuery)
+  ext = ext || "." + (await fileTypeFromBuffer(buffer)).ext
 
   const name =
-    filename + "-" + createHash("sha1").update(urlWithoutQuery).digest("hex").slice(0, 8) +
-    (ext || "." + mime.getExtension(blob.type)); // ew
+    filename + "-" + createHash("sha1").update(urlWithoutQuery).digest("hex").slice(0, 8) + ext; // ew
 
   return {
     ...config[configType],
-    blob,
+    buffer,
     name,
   };
 }
