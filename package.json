@@ -7,7 +7,7 @@
     "watch-css": "tailwindcss -i ./assets/css/styles.css -o ./_site/css/styles.css -w",
     "watch-js": "esbuild ./assets/js/scripts.js --outfile=./_site/js/scripts.js --bundle --target=es2018 --watch",
     "start": "cross-env NODE_ENV=development concurrently \"node hash\"  \"cross-env ELEVENTY_ENV=development eleventy --serve\"  \"npm:watch-*\"",
-    "build-css": "npx tailwindcss -i ./assets/css/styles.css -o ./_site/css/styles.css --minify",
+    "build-css": "tailwindcss -i ./assets/css/styles.css -o ./_site/css/styles.css --minify",
     "build-js": "esbuild ./assets/js/scripts.js --outfile=./_site/js/scripts.js  --bundle --target=es2018 --minify",
     "build": "cross-env NODE_ENV=production concurrently \"npm:build-*\" && node hash && cross-env ELEVENTY_ENV=production eleventy",
     "publish:page": "node -r dotenv/config scripts/publish-page"
