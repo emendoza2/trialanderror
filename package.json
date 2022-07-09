@@ -42,5 +42,8 @@
     "markdown-it-image-figures": "^2.1.0",
     "markdown-it-katex": "^2.0.3",
     "markdown-it-remove": "^1.0.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }
