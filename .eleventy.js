@@ -46,6 +46,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPlugin(syntaxHighlight);
 
+
   /**
    * Frontmatter stuff
    */
@@ -108,7 +109,6 @@ module.exports = function (eleventyConfig) {
     const { url, data: { title } } = this.ctx.collections.all.find(page => {
       return normalizePageId(page.data?.pageId) === normalizePageId(pageId)
     });
-    console.log(url, title)
     if (!url || !title) return `[link]`;
     return `[${title}](${url})`;
   })
@@ -121,6 +121,11 @@ module.exports = function (eleventyConfig) {
     return `<aside>${md.renderInline(content.trim())}</aside>`;
   });
   eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
+
+  // eleventyConfig.addPlugin(lazyImagesPlugin, {
+  //   imgSelector: '.post img',
+  //   scriptSrc: 'https://cdn.jsdelivr.net/npm/vanilla-lazyload@16.1.0/dist/lazyload.min.js', 
+  // });
 
   return {
     dir: {
@@ -135,8 +140,8 @@ module.exports = function (eleventyConfig) {
 async function imageShortcode(
   src,
   alt = "",
-  widths = [400, 800, 1280],
-  formats = ["webp", "jpeg"],
+  widths = [24, 400, 800, 1280],
+  formats = ["avif", "webp", "jpeg"],
   sizes = "100vw"
 ) {
   const isRelative = !/^(\/|https?:\/\/)/.test(src);
@@ -150,10 +155,18 @@ async function imageShortcode(
     svgShortCircuit: true,
     urlPath: "/assets/img",
     outputDir: "./_site/assets/img",
+    sharpJpegOptions: {
+      progressive: true
+    },
+    sharpPngOptions: {
+      progressive: true
+    }
   });
   return generateImageHTMl(stats, {
     alt: mdStrip.renderInline(alt),
     sizes,
+    loading: "lazy",
+    decoding: "async",
   });
 }
 

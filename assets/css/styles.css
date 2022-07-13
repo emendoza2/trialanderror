@@ -74,6 +74,11 @@ article pre[class*="language-"] {
     .post img {
         @apply rounded-md mx-auto;
     }
+    .post > p > img, .post > p > picture > img {
+        @apply block;
+        max-width: calc(100% + 2em);
+        margin-left: -1em; 
+    }
 }
 
 /* believe a lot */ 
