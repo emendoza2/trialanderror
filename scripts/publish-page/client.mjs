@@ -1,11 +1,8 @@
 import { Client } from "@notionhq/client";
-import fetch from "node-fetch";
 import slugify from "slugify";
 import { createHash } from "crypto";
-import { extname, parse } from "path";
-import mime from "mime";
+import { parse } from "path";
 import EleventyFetch from "@11ty/eleventy-fetch";
-import { Blob } from "buffer";
 import { fileTypeFromBuffer } from 'file-type';
 
 async function readBlocks(client, blockId) {

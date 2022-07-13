@@ -10,7 +10,9 @@
     "build-css": "tailwindcss -i ./assets/css/styles.css -o ./_site/css/styles.css --minify",
     "build-js": "esbuild ./assets/js/scripts.js --outfile=./_site/js/scripts.js  --bundle --target=es2018 --minify",
     "build": "cross-env NODE_ENV=production concurrently \"npm:build-*\" && node hash && cross-env ELEVENTY_ENV=production eleventy",
-    "publish:page": "node -r dotenv/config scripts/publish-page"
+    "publish:notion-page": "node -r dotenv/config scripts/publish-page",
+    "optimize:images": "mogrify -resize 1500x\\> ./src/posts/**/*.{png,webp,jpg}",
+    "publish:page": "run(){ npm run publish:notion-page $1 && npm run optimize:images; }; run"
   },
   "keywords": [
     "eleventy",
@@ -38,6 +40,7 @@
     "@11ty/eleventy-plugin-syntaxhighlight": "^4.0.0",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.1",
+    "eleventy-plugin-lazyimages": "^2.1.2",
     "markdown-it": "^13.0.1",
     "markdown-it-image-figures": "^2.1.0",
     "markdown-it-katex": "^2.0.3",
