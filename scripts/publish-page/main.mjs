@@ -28,7 +28,10 @@ async function main() {
 
     await mkdir(dir, { recursive: true });
     const attachmentPromises = data?.attachments.map(({ buffer, name }) => {
-      return writeFile(`${dir}/${name}`, buffer)
+      return writeFile(`${dir}/${name}`, buffer, { flag: 'wx' }).catch(err => {
+        console.warn(err);
+        console.log("File exists:", `${dir}/${name}`);
+      })
     })
     const fileWriter = writeFile(`${dir}/index.md`, printer.print(data));
     const results = await Promise.all([...attachmentPromises, fileWriter]);

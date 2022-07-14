@@ -11,7 +11,7 @@
     "build-js": "esbuild ./assets/js/scripts.js --outfile=./_site/js/scripts.js  --bundle --target=es2018 --minify",
     "build": "cross-env NODE_ENV=production concurrently \"npm:build-*\" && node hash && cross-env ELEVENTY_ENV=production eleventy",
     "publish:notion-page": "node -r dotenv/config scripts/publish-page",
-    "optimize:images": "mogrify -resize 1500x\\> ./src/posts/**/*.{png,webp,jpg}",
+    "optimize:images": "mogrify -resize 1500x\\> $(for file in $(setopt CSH_NULL_GLOB; git status --porcelain -su ./src/posts/**/*.{jpg,jpeg,png,webp,avif,gif} | cut -c 4-); do if [[ $(bc -l <<< $(identify -ping -format \"%w>1500\" \"$file\")) -eq 1 ]]; then echo \"$file\"; fi; done)",
     "publish:page": "run(){ npm run publish:notion-page $1 && npm run optimize:images; }; run"
   },
   "keywords": [
