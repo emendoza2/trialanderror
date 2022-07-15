@@ -122,11 +122,6 @@ module.exports = function (eleventyConfig) {
   });
   eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
 
-  // eleventyConfig.addPlugin(lazyImagesPlugin, {
-  //   imgSelector: '.post img',
-  //   scriptSrc: 'https://cdn.jsdelivr.net/npm/vanilla-lazyload@16.1.0/dist/lazyload.min.js', 
-  // });
-
   return {
     dir: {
       input: "src",
