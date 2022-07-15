@@ -1,6 +1,4 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Piazzolla:ital,opsz,wght@0,8..30,400;0,8..30,600;1,8..30,400;1,8..30,600&display=swap');
-
 @font-face {
   font-family: "Redaction";
   font-style: italic;
@@ -63,42 +61,47 @@
   src: url("/fonts/Redaction_20-Bold.woff2") format("woff2");
 }
 
-@font-face {
-  font-family: "Apfel Grotezk";
-  src: url("/fonts/ApfelGrotezk-Regular.woff2") format("woff2"),
-    url("/fonts/ApfelGrotezk-Regular.woff") format("woff");
-  font-weight: 400;
-  font-display: swap;
-  font-style: normal;
-}
 
 @font-face {
-  font-family: "Apfel Grotezk";
-  src: url("/fonts/ApfelGrotezk-Fett.woff2") format("woff2"),
-    url("/fonts/ApfelGrotezk-Fett.woff") format("woff");
-  font-weight: 700;
-  font-display: swap;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "TTE";
-  src: url("/fonts/TT2020StyleE-Italic.woff2") format("woff2");
-  font-weight: 400;
-  font-display: swap;
+  font-family: "Atkinson Hyperlegible";
   font-style: italic;
-}
-@font-face {
-  font-family: "TTE";
-  src: url("/fonts/TT2020StyleE-Regular.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
-  font-style: normal;
+  src: url("/fonts/atkinson-hyperlegible-v9-latin-italic.woff2") format("woff2");
 }
 @font-face {
-  font-family: "TTE";
-  src: url("/fonts/TT2020StyleB-Regular.woff2") format("woff2");
+  font-family: "Atkinson Hyperlegible";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/atkinson-hyperlegible-v9-latin-regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  font-style: normal;
   font-weight: 700;
   font-display: swap;
+  src: url("/fonts/atkinson-hyperlegible-v9-latin-700.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "DM Mono";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/dm-mono-v10-latin-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "DM Mono";
   font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/dm-mono-v10-latin-regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "DM Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/dm-mono-v10-latin-700.woff2") format("woff2");
 }

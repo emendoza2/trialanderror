@@ -2,8 +2,8 @@
 layout: base
 ---
 {% block head %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css" media="print" onload="this.media='all'; this.onload=null;">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-gruvbox-dark.css" media="print" onload="this.media='all'; this.onload=null;">
+<link rel="stylesheet" href="{{ hash['/css/katex.min.css'] | url }}" media="print" onload="this.media='all'; this.onload=null;">
+<link rel="stylesheet" href="{{ hash['/css/styles.css'] | url }}" media="print" onload="this.media='all'; this.onload=null;">
 {% endblock %}
 
 <div class="container p-8 mx-auto flex flex-col justify-between min-h-screen">
