@@ -113,7 +113,7 @@ function getSlug({ title }) {
       .join("")
       .toLowerCase(),
     {
-      remove: /[:!\?]/g,
+      remove: /[:!\?\(\)]/g,
     }
   );
 }
