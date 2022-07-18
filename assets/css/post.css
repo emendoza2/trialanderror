@@ -1,0 +1,75 @@
+pre,
+code,
+article code[class*="language-"],
+pre[class*="language-"] {
+    @apply font-dmmono text-sm;
+}
+article pre[class*="language-"] {
+    @apply p-4 rounded-md -mx-4;
+}
+
+.post > * + * {
+    @apply mt-4;
+}
+
+.post .progressbar {
+    border-radius: 50%;
+    background: conic-gradient(
+        currentColor calc(var(--scrollAmount) * 360deg),
+        #0000 0
+    );
+    @apply rounded-full w-8 h-8 fixed right-8 top-8 opacity-50 -z-10 md:opacity-100;
+}
+
+.post > h1,
+.post > h2,
+.post > h3,
+.post > h4 {
+    @apply font-redaction font-bold mt-6;
+}
+.post > h1 {
+    @apply text-4xl;
+}
+.post > h2 {
+    @apply text-3xl;
+}
+.post > h3 {
+    @apply text-2xl;
+}
+.post > h4 {
+    @apply text-xl;
+}
+.post td,
+.post th {
+    @apply p-3;
+}
+.post th {
+    @apply uppercase text-base;
+}
+.post code:not(pre code) {
+    @apply mx-1 py-1 rounded-sm bg-amber-200 text-rose-800 text-base shadow-amber-200;
+    box-shadow: 0.25rem 0 0 var(--tw-shadow-color),
+        -0.25rem 0 0 var(--tw-shadow-color);
+    -webkit-box-decoration-break: clone;
+    -ms-box-decoration-break: clone;
+    -o-box-decoration-break: clone;
+    box-decoration-break: clone;
+}
+.post figure {
+    @apply flex flex-col items-center;
+}
+.post figcaption {
+    @apply font-redaction italic text-base mt-2;
+}
+.post img {
+    @apply rounded-md mx-auto;
+}
+.post > p > img,
+.post > p > picture > img {
+    @apply block;
+    max-width: calc(100% + 2em);
+    margin-left: -1em;
+}
+.post ol {
+    @apply list-decimal list-inside ml-2;
+}

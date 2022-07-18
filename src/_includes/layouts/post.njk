@@ -2,26 +2,18 @@
 layout: base
 ---
 {% block head %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css" media="print" onload="this.media='all'; this.onload=null;">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-gruvbox-dark.css" media="print" onload="this.media='all'; this.onload=null;">
+<link rel="stylesheet" href="/css/katex/katex.min.css" media="print" onload="this.media='all'; this.onload=null;">
+<link rel="stylesheet" href="/css/prism-gruvbox-dark.css" media="print" onload="this.media='all'; this.onload=null;">
+<link rel="stylesheet" href="{{ hash['/css/post.css'] | url }}" media="print" onload="this.media='all'; this.onload=null;">
+<script src="{{ hash['/js/post.js'] | url }}" defer></script>
 {% endblock %}
 
-<div class="container p-8 mx-auto flex flex-col justify-between min-h-screen">
+<div class="container p-8 md:px-16 mx-auto flex flex-col justify-between min-h-screen">
     <main class="text-lg font-atkinson">
         <article class="max-w-prose post">
             <header class="mb-4">
                 <nav class="mb-4 text-amber-900 text-base font-dmmono"><a href="/" class="font-dmmono font-medium decoration-transparent px-2 py-1 border-b border-current">&larr; Home</a>
-                <div class="progressbar"></div>
-                <script>
-                    document.addEventListener('scroll', function() {
-                        var $doc = document.documentElement, 
-                            $body = document.body,
-                            scrollTop = $doc['scrollTop'] || $body['scrollTop'],
-                            scrollBottom = ($doc['scrollHeight'] || $body['scrollHeight']) - window.innerHeight,
-                            scrollRatio = scrollTop / scrollBottom;                    
-                        document.querySelector(".progressbar").style.setProperty("--scrollAmount", scrollRatio); 
-                    });
-                </script>
+                    <div class="progressbar"></div>
                 </nav>
                 <div class="text-base font-dmmono mb-4">
                     Published <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time> <br>
