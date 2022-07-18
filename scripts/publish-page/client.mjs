@@ -118,7 +118,7 @@ function getSlug({ title }) {
   );
 }
 
-async function getAttachment({ type, [type]: { configType, [configType]: attachment } }) {
+async function getAttachment({ type, [type]: { type: configType, [configType]: attachment } }) {
   const url = attachment.url;
   const urlWithoutQuery = url.split("?")[0];
   const buffer = await EleventyFetch(url, {

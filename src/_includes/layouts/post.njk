@@ -2,13 +2,13 @@
 layout: base
 ---
 {% block head %}
-<link rel="stylesheet" href="{{ hash['/css/katex.min.css'] | url }}" media="print" onload="this.media='all'; this.onload=null;">
-<link rel="stylesheet" href="{{ hash['/css/styles.css'] | url }}" media="print" onload="this.media='all'; this.onload=null;">
+<link rel="stylesheet" href="/css/katex/katex.min.css" media="print" onload="this.media='all'; this.onload=null;">
+<link rel="stylesheet" href="/css/prism-gruvbox-dark.css" media="print" onload="this.media='all'; this.onload=null;">
 <link rel="stylesheet" href="{{ hash['/css/post.css'] | url }}" media="print" onload="this.media='all'; this.onload=null;">
-<script src="{{ hash['/js/progress.js'] | url }}" defer></script>
+<script src="{{ hash['/js/post.js'] | url }}" defer></script>
 {% endblock %}
 
-<div class="container p-8 mx-auto flex flex-col justify-between min-h-screen">
+<div class="container p-8 md:px-16 mx-auto flex flex-col justify-between min-h-screen">
     <main class="text-lg font-atkinson">
         <article class="max-w-prose post">
             <header class="mb-4">

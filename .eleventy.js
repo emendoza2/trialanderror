@@ -106,11 +106,15 @@ module.exports = function (eleventyConfig) {
    * Shortcodes
    */
   eleventyConfig.addShortcode("mentionPageId", function (pageId){
-    const { url, data: { title } } = this.ctx.collections.all.find(page => {
-      return normalizePageId(page.data?.pageId) === normalizePageId(pageId)
-    });
-    if (!url || !title) return `[link]`;
-    return `[${title}](${url})`;
+    try {
+      const { url, data: { title } } = this.ctx.collections.all.find(page => {
+        return normalizePageId(page.data?.pageId) === normalizePageId(pageId)
+      });
+      if (!url || !title) return `[link]`;
+      return `[${title}](${url})`;
+    } catch (e) {
+      return `https://notion.so/${pageId}`
+    }
   })
   eleventyConfig.addPairedShortcode("figure", function (content, caption = "") {
     return `<figure>${md.renderInline(
