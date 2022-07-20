@@ -7,7 +7,7 @@ tags:
   - Virtualization
 ---
 
-I had installed Ubuntu before. I had even installed MacOS. But I had no clue Windows 10 on Virtualbox would the nastiest to do. It took a lot of head-banging just to figure out what the problem was. For historical purposes, I’m leaving the first part of this article as I originally wrote it under “What I tried.”
+I had installed Ubuntu before. I had even installed MacOS. But I had no clue Windows 10 on Virtualbox would the nastiest to do. It took a lot of head-banging just to figure out what the problem was. For historical purposes, I’m leaving the first part of this article as I originally wrote it under “What I tried,” so that hopefully, someone out there with the same problem as myself will benefit from a walk-through of the thought process. 
 
 **TL;DR** - Hyper-V (WSL, Docker) and Virtualbox are enemies right now (and enemies of Virtualbox are my enemies). [Disabling Hyper-V](https://forums.virtualbox.org/viewtopic.php?t=98642) is the one tweak that will allow a Windows 10 guest to run. Then, the installation steps are straightforward:
 
@@ -38,7 +38,9 @@ The VM refused to finish installation. It would be eternally stuck on the Window
 
 In desperation, I did something I would never attempt otherwise: I watched a YouTube tutorial to see what I was doing wrong and if the process was indeed this frustrating. I could tell nothing from it because the guy used cuts during the loading screens!
 
-No tweak worked, so I gave up for a month. While I was installing other VMs, I figured I should try installing Windows 10 again. I dug a little deeper into the issue and found that a specific line in the Virtualbox log indicated an issue with virtualization: 
+No tweak worked. Windows 10 simply refused to install. So I gave up. 
+
+A month later, while I was installing other VMs, I figured I should try installing Windows 10 again. I dug a little deeper into the issue and found that a specific line in the Virtualbox log indicated an issue with virtualization: 
 
 ```plain text
 HMR3Init: Attempting fall back to NEM (Hyper-V is active)
@@ -71,7 +73,7 @@ I also deleted the old OS, drives and all, and created a new one with the follow
 
 Windows 10 installed! 
 
-Evidently, in the lower right corner of the window, the turtle has all but disappeared. With Hyper-V off, setup happened much quicker (50x!) than before. And I have the satisfaction of resolving a month-long problem. This reminds me of the principle that problem-solving sometimes, counterintuitively, takes some time to distance you from the heat and mental ruts of the moment. 
+Evidently, in the lower right corner of the window, the turtle all but disappeared. With Hyper-V off, setup happened much quicker (50x!) than before. And I had the satisfaction of resolving a month-long problem. This reminded me of the principle that problem-solving sometimes, counterintuitively, takes some time to distance you from the heat and mental ruts of the moment. 
 
 ⚡💾
 

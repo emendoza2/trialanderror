@@ -1,0 +1,9 @@
+{
+  "author": "Elijah Mendoza",
+  "license": "ISC",
+  "main": "main.mjs",
+  "dependencies": {
+    "imager-io": "^0.1.2",
+    "sharp": "^0.30.7"
+  }
+}

@@ -11,7 +11,7 @@
     "build:eleventy": "node hash && cross-env ELEVENTY_ENV=production eleventy",
     "build": "cross-env NODE_ENV=production run-s build:assets build:eleventy",
     "publish:notion-page": "node -r dotenv/config scripts/publish-page",
-    "publish:notion-images": "bash scripts/notion-images/notion-images.sh",
+    "publish:notion-images": "node scripts/notion-images",
     "publish:page": "run-s \"publish:notion-page {1}\" publish:notion-images --"
   },
   "keywords": [
