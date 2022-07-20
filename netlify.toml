@@ -2,3 +2,9 @@
 [build]
   command = "npm run build"
   publish = "_site"
+
+[[plugins]]
+package = "netlify-plugin-cache"
+  [plugins.inputs]
+  # Optional (but highly recommended). Defaults to [".cache"].
+  paths = [".cache", "_site"]

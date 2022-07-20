@@ -29,8 +29,8 @@ async function main() {
     await mkdir(dir, { recursive: true });
     const attachmentPromises = data?.attachments.map(({ buffer, name }) => {
       return writeFile(`${dir}/${name}`, buffer, { flag: 'wx' }).catch(err => {
-        console.warn(err);
-        console.log("File exists:", `${dir}/${name}`);
+        if (err?.code === 'EEXIST') console.log("Not overwriting", `${dir}/${name}`);
+        else console.warn(err);
       })
     })
     const fileWriter = writeFile(`${dir}/index.md`, printer.print(data));
