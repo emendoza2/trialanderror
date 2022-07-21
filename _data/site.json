@@ -1,4 +1,12 @@
 {
     "title": "Trial & Error",
-    "tagline": "How great things happen"
+    "url": "https://blog.elijahmendoza.nom.za",
+    "language": "en",
+    "description": "How great things happen",
+    "author": {
+        "name": "Elijah Mendoza",
+        "email": "hi@elijahmendoza.nom.za",
+        "discord": "https://discord.com/users/992410448404160592",
+        "url": "https://example.com/about-me/"
+    }
 }
