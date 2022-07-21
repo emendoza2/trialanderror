@@ -36,7 +36,7 @@ async function main() {
     const fileWriter = writeFile(`${dir}/index.md`, printer.print(data));
     const results = await Promise.all([...attachmentPromises, fileWriter]);
     
-    console.log("Published", dir);
+    console.log(`Published "${data.frontMatter.title.title.map(({ plain_text }) => plain_text).join('')}" in ${dir}`);
     return results;
   } catch (error) {
     console.error(error);
