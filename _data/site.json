@@ -3,8 +3,8 @@
     "url": "https://blog.elijahmendoza.nom.za",
     "language": "en",
     "description": "How great things happen",
-    "author": {
-        "name": "Elijah Mendoza",
+    "author": "Elijah Mendoza",
+    "contact": {
         "email": "hi@elijahmendoza.nom.za",
         "discord": "https://discord.com/users/992410448404160592",
         "url": "https://example.com/about-me/"
