@@ -8,6 +8,8 @@ const Image = require("@11ty/eleventy-img");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
 const excerptFilter = require("./plugins/excerpt");
+const pluginSEO = require("eleventy-plugin-seo");
+
 const { readFile } = require("fs/promises");
 
 const MARKDOWN_OPTIONS = {
@@ -44,7 +46,13 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.setLibrary("md", md);
 
+  /** 
+   * Plugin stuff
+   */
   eleventyConfig.addPlugin(syntaxHighlight);
+  const siteData = require("./_data/site.json");
+  siteData.author = siteData.author.name
+  eleventyConfig.addPlugin(pluginSEO, siteData);
 
 
   /**

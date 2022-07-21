@@ -31,6 +31,7 @@
     "cross-env": "^7.0.3",
     "del-cli": "^4.0.0",
     "dotenv": "^16.0.1",
+    "eleventy-plugin-seo": "^0.5.2",
     "esbuild": "^0.14.0",
     "esbuild-loader": "^2.19.0",
     "html-minifier": "^4.0.0",

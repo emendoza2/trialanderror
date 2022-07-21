@@ -1,12 +1,8 @@
 const fs = require('fs');
 const md5 = require('md5');
 
-const assets = [
-  '/css/styles.css',
-  '/css/post.css',
-  '/js/scripts.js',
-  '/js/post.js'
-];
+const { css, js } = require("./_data/assets.json");
+const assets = [...css, ...js].map(a => a.slice(6));
 
 const dataFile = '_data/hash.json';
 
