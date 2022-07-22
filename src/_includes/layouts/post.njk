@@ -1,5 +1,7 @@
 ---
 layout: base
+eleventyComputed:
+    image: https://trialanderror-og-image.vercel.app/{{ title | urlencode }}.png?theme=dark&md=1&fontSize=125px&images=https%3A%2F%2Fblog.elijahmendoza.nom.za%2Fbrand%2Flogo-dark-transparent.svg
 ---
 {% block head %}
 <link rel="stylesheet" href="/css/katex/katex.min.css" media="print" onload="this.media='all'; this.onload=null;">
