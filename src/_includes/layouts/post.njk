@@ -1,40 +1,42 @@
----
-layout: base
-eleventyComputed:
-    image: https://trialanderror-og-image.vercel.app/{{ title | urlencode }}.png?theme=dark&md=1&fontSize=125px&images=https%3A%2F%2Fblog.elijahmendoza.nom.za%2Fbrand%2Flogo-dark-transparent.svg
----
-{% block head %}
-<link rel="stylesheet" href="/css/katex/katex.min.css" media="print" onload="this.media='all'; this.onload=null;">
-<link rel="stylesheet" href="/css/prism-gruvbox-dark.css" media="print" onload="this.media='all'; this.onload=null;">
-<link rel="stylesheet" href="{{ hash['/css/post.css'] | url }}" media="print" onload="this.media='all'; this.onload=null;">
-<script src="{{ hash['/js/post.js'] | url }}" defer></script>
+{% extends "layouts/base.njk" %}
+
+{% block description %}
+<meta content="sds"/>
+    {%- for post in collections.post -%}{%- if post.url == page.url -%}{{ post | excerpt | striptags }}{%- endif -%}{%- endfor -%}
 {% endblock %}
 
-<div class="container p-8 md:px-16 mx-auto flex flex-col justify-between min-h-screen">
-    <main class="text-lg font-atkinson">
-        <article class="max-w-prose post">
-            <header class="mb-4">
-                <nav class="mb-4 text-amber-900 text-base font-dmmono"><a href="/" class="font-dmmono font-medium decoration-transparent px-2 py-1 border-b border-current">&larr; Home</a>
-                    <div class="progressbar"></div>
-                </nav>
-                <div class="text-base font-dmmono mb-4">
-                    Published <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time> <br>
-                </div>
-                <h1 class="text-4xl md:text-5xl font-redaction20 text-center my-8 leading-tight">{{ title }}</h1>
-            </header>
-            {% block content %}
+{% block headEnd %}
+    <link rel="stylesheet" href="/css/katex/katex.min.css" media="print" onload="this.media='all'; this.onload=null;">
+    <link rel="stylesheet" href="/css/prism-gruvbox-dark.css" media="print" onload="this.media='all'; this.onload=null;">
+    <link rel="stylesheet" href="{{ hash['/css/post.css'] | url }}" media="print" onload="this.media='all'; this.onload=null;">
+    <script src="{{ hash['/js/post.js'] | url }}" defer></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container p-8 md:px-16 mx-auto flex flex-col justify-between min-h-screen">
+        <main class="text-lg font-atkinson">
+            <article class="max-w-prose post">
+                <header class="mb-4">
+                    <nav class="mb-4 text-amber-900 text-base font-dmmono"><a href="/" class="font-dmmono font-medium decoration-transparent px-2 py-1 border-b border-current">&larr; Home</a>
+                        <div class="progressbar"></div>
+                    </nav>
+                    <div class="text-base font-dmmono mb-4">
+                        Published <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time> <br>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-redaction20 text-center my-8 leading-tight">{{ title }}</h1>
+                </header>
                 {{ content | safe }}
-            {% endblock %}
-            <footer>
-                <small class="text-base font-dmmono">
-                    {% for tag in tags %}
-                        {% if not tag in ["post"] %}
-                        #{{ tag }}
-                        {%endif%}
-                    {% endfor %}
-                </small>
-            </footer>
-        </article>
-    </main>
-    {% include "c-footer.njk" %}
-</div>
+                <footer>
+                    <small class="text-base font-dmmono">
+                        {% for tag in tags %}
+                            {% if not tag in ["post"] %}
+                            #{{ tag }}
+                            {%endif%}
+                        {% endfor %}
+                    </small>
+                </footer>
+            </article>
+        </main>
+        {% include "c-footer.njk" %}
+    </div>
+{%endblock%}

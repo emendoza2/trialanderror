@@ -1,5 +1,5 @@
 module.exports = function excerptFilter(markdown, separators = ["</p>"]) {
-  return function (item) {
+  return function getExcerpt(item) {
     const excerpt = item.data?.excerpt;
 
     // If it has an explicit excerpt (see setFrontMatterParsingOptions),

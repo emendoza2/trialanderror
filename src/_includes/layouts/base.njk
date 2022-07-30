@@ -1,22 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>{{ title }}</title>
-    
-    <meta charset="UTF-8"/>
-    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"/>
-    <meta name="generator" content="Eleventy" />
-
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    
-    <link rel="stylesheet" href="{{ hash['/css/styles.css'] | url }}"/>
-
-    {% seo "" %}
-
-    {% block head %}{% endblock %}
-  </head>
+  {% include "c-head.njk" %}
   <body class="antialiased font-atkinson bg-parchment text-zinc-900">
     {% block content %}
       {{ content | safe }}
