@@ -383,7 +383,7 @@ msv credentials
 
 Username  Domain   LM                                NTLM                              SHA1
 --------  ------   --                                ----                              ----
-Dark      Dark-PC  e52cac67419a9a22ecb08369099ed302  7c4fe5eada682714a036e39378362bab  0d082c4b4f2aeafb67fd0ea568a997e9d3ebc0eb
+Cathy     Cathy-PC 85971f9ab438ab5e970d34a7150963a7  4290ea8ed103c15ba8855990137f4626  91b98e3b3dee2ca23dbf9d1d47b5bd530ca67bfe
 
 wdigest credentials
 ===================
@@ -391,15 +391,15 @@ wdigest credentials
 Username  Domain     Password
 --------  ------     --------
 (null)    (null)     (null)
-DARK-PC$  WORKGROUP  (null)
-Dark      Dark-PC    Password01!
+CATHY-PC$ WORKGROUP  (null)
+Cathy     Cathy-PC    sunshine12
 
 tspkg credentials
 =================
 
 Username  Domain   Password
 --------  ------   --------
-Dark      Dark-PC  Password01!
+Cathy     Cathy-PC sunshine12
 
 kerberos credentials
 ====================
@@ -407,23 +407,21 @@ kerberos credentials
 Username  Domain     Password
 --------  ------     --------
 (null)    (null)     (null)
-Dark      Dark-PC    Password01!
-dark-pc$  WORKGROUP  (null)
+Cathy     Cathy-PC   sunshine12
+cathy-pc$ WORKGROUP  (null)
 ```
 
 There is more to security than computer configuration. Sometimes humans are misconfigured and set weak passwords like this one 😉. With this password, you run the following command in a Kali terminal to open FreeRDP.
 
 ```shell
-$ xfreerdp /u:Dark /p:Password01\!~ /v:10.10.195.113
+$ xfreerdp /u:Cathy /p:sunshine12 /v:10.10.195.113
 ```
 
 {% figure "Commence sneaky chuckling and hand-rubbing." %}{% image "Untitled-b61c7ce9.png", "Commence sneaky chuckling and hand-rubbing." %}{% endfigure %}
 
-You replace the source clients’ music selections and the nondescript scratchy pop music is all but annihilated. In its place you put pleasing impressionist classical pieces. Immediately, you hear what sounds like a sigh of relief from all your coworkers. The freedom from that soul-stifling music is exhilarating.
+You reconfigure the source clients and the nondescript scratchy pop music is all but annihilated. In its place you put pleasing impressionist classical pieces. Immediately, you hear what sounds like a sigh of relief from all your coworkers. The freedom from that soul-stifling music is exhilarating.
 
 Finally, you tear out Windows 7 and Icecast 2.0.1 and replace them with updated and patched counterparts with antivirus enabled. A job well done. The ice can no longer be broken.
 
 Indeed, you could have walked up to the computer directly or simply asked Cathy to change the music like a normal person. But this process was far more educational, exciting, and valuable. Hopefully, you learned a thing or two along the way about penetration testing as well. 
-
-
 
