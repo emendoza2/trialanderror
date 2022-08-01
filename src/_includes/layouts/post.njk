@@ -1,8 +1,15 @@
+---
+ogtype: article
+---
+
 {% extends "layouts/base.njk" %}
 
 {% block description %}
-<meta content="sds"/>
-    {%- for post in collections.post -%}{%- if post.url == page.url -%}{{ post | excerpt | striptags }}{%- endif -%}{%- endfor -%}
+    <meta content="sds"/>
+    {% set result %}{%- for post in collections.post -%}{%- if post.url == page.url -%}{{ post | excerpt | striptags }}{%- endif -%}{%- endfor -%}{% endset %}
+    <meta name="description" content="{{ result }}">
+    <meta property="og:description" content="{{ result }}">
+    <meta name="twitter:description" content="{{ result }}">
 {% endblock %}
 
 {% block headEnd %}
